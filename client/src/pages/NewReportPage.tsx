@@ -1,8 +1,9 @@
 import { useState, useContext } from "react"
 import { AuthContext } from "../AuthContext"
+import { useNavigate } from "react-router-dom"
 
 function NewReportPage() {
-
+    const navigate = useNavigate()
     const [category, setCategory] = useState("")
     const [urgency, setUrgency] = useState("")
     const [message, setMessage] = useState("")
@@ -17,7 +18,6 @@ function NewReportPage() {
     }
 
     async function submit() {
-
         const formData = new FormData()
 
         formData.append("category", category)
@@ -37,22 +37,27 @@ function NewReportPage() {
         })
 
         const data = await response.json()
-        console.log(data)
+        if (response.ok){
+            alert(`The report was sent successfully. Report id: ${data.id}`)
+            navigate('/dashboard')
+        }else{
+            alert(data.message)
+        }
     }
 
     return (
         <div>
 
             <label>Category</label>
-            <input onChange={(e) => setCategory(e.target.value)} />
+            <input onChange={(e) => setCategory(e.target.value)} required />
 
             <label>Urgency</label>
-            <input onChange={(e) => setUrgency(e.target.value)} />
+            <input onChange={(e) => setUrgency(e.target.value)} required/>
 
             <label>Message</label>
-            <input onChange={(e) => setMessage(e.target.value)} />
+            <input onChange={(e) => setMessage(e.target.value)} required/>
 
-            <input type="file" onChange={handleFile} />
+            <input type="file" name="image" onChange={handleFile} />
 
             <button onClick={submit}>Submit</button>
 
