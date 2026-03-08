@@ -1,0 +1,44 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "agentCode": "a100",
+      "fullName": "david",
+      "passwordHash": "$2a$12$nUVEqQlIiiAR7MgLksAPs.YFzSxUM3p1AQVd8fKiqW0yVWY8iiiXm",
+      "role": "admin",
+      "createdAt": "2026-03-08T10:00:00.000Z"
+    },
+    {
+      "id": 2,
+      "agentCode": "a101",
+      "fullName": "moshe",
+      "passwordHash": "$2a$12$dkn/VSw3NOORTkVGETXvZu4599MeVfYulBS563yNJcIZZD1JlomSe",
+      "role": "agent",
+      "createdAt": "2026-03-08T10:05:00.000Z"
+    },
+    {
+      "id": 3,
+      "agentCode": "a102",
+      "fullName": "$2a$12$p4/sPSlbNtFHAX70zxaFY.Mj7WsxLbpwpH5DMx5UnBDC4OKR9E1Ie",
+      "passwordHash": "put_hash_here",
+      "role": "agent",
+      "createdAt": "2026-03-08T10:10:00.000Z"
+    },
+    {
+      "id": 4,
+      "agentCode": "a103",
+      "fullName": "avi",
+      "passwordHash": "$2a$12$ZYLWobmzXfQs5fHZc.NAauIjvqYnKjT1tosxCRxQalFz.Rob2xSva",
+      "role": "agent",
+      "createdAt": "2026-03-08T10:15:00.000Z"
+    },
+    {
+      "id": 5,
+      "agentCode": "a104",
+      "fullName": "daniel",
+      "passwordHash": "$2a$12$VBXVA0Ql/pq6moyyXcSZsu2QWkjPlhvSCMjEgcv/yx2mspfyjVAkq",
+      "role": "agent",
+      "createdAt": "2026-03-08T10:20:00.000Z"
+    }
+  ]
+}
