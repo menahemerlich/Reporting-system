@@ -20,10 +20,15 @@ function LoginPage() {
                 })
             })
             const data = await response.json()
-            setToken(data.token)
-            setUser(data.user)
-            localStorage.setItem("token", data.token)
-            navigate('/dashboard')
+            if (response.ok) {
+                localStorage.setItem("token", data.token)
+                setToken(data.token)
+                setUser(data.user)
+                navigate('/dashboard')
+            } else {
+                alert(data.message + '. Try agein!')
+            }
+
         } catch (error) {
             console.error(error)
         }
