@@ -1,0 +1,11 @@
+category,urgency,message
+network,high,Internet is down in the office
+hardware,medium,Printer not working
+software,low,Application is slow to respond
+network,high,WiFi disconnecting frequently
+hardware,medium,Laptop battery not charging
+software,low,Login page loading slowly
+network,high,Router keeps restarting
+hardware,low,Keyboard keys are stuck
+software,medium,Error when saving document
+network,medium,VPN connection unstable

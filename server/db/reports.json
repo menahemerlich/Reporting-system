@@ -1,0 +1,42 @@
+[
+  {
+    "id": "Nh7VL",
+    "userId": 2,
+    "category": "network",
+    "urgency": "medium",
+    "message": "VPN connection unstable",
+    "imagePath": null,
+    "sourceType": "CSV",
+    "createdAt": "2026-03-09T13:50:21.889Z"
+  },
+  {
+    "id": "l610B",
+    "userId": 3,
+    "category": "123",
+    "urgency": "123",
+    "message": "123",
+    "imagePath": "uploads\\cRdJE-cdAp.png",
+    "sourceType": "agent",
+    "createdAt": "2026-03-09T14:01:36.105Z"
+  },
+  {
+    "id": "mmE7O",
+    "userId": 1,
+    "category": "z",
+    "urgency": "z",
+    "message": "z",
+    "imagePath": "uploads\\7tFgsGh8XM×××× ×¢× _E_ ×××ª× ××ª××.png",
+    "sourceType": "agent",
+    "createdAt": "2026-03-09T14:23:43.025Z"
+  },
+  {
+    "id": "P5Cre",
+    "userId": 1,
+    "category": "a",
+    "urgency": "a",
+    "message": "a",
+    "imagePath": null,
+    "sourceType": "agent",
+    "createdAt": "2026-03-09T14:28:14.072Z"
+  }
+]

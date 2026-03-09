@@ -5,14 +5,14 @@ import { nanoid } from 'nanoid'
 import path from "path"
 import csv from 'csv-parser'
 import fs from 'fs'
+import { getReports, saveReport } from "../utils/fileFunctions.js";
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, "uploads/")
     },
     filename: (req, file, cb) => {
-        const ext = path.extname(file.originalname)
-        cb(null, nanoid(10) + ext)
+        cb(null, file.originalname)
     }
 })
 const upload = multer({
@@ -50,47 +50,73 @@ reportsRoute.post('/', authMiddleware, (req, res) => {
         if (!category || !urgency || !message) {
             return res.status(400).json({ message: "Missing fields" })
         }
-        const newReport = {
-            id: nanoid(5),
-            userId: req.user.id,
-            category,
-            urgency,
-            message,
-            imagePath: req.file ? req.file.path : null,
-            sourceType: "agent",
-            createdAt: new Date().toISOString()
+        if (req.file) {
+            req.body.imagePath = req.file.path
         }
+        const newReport = saveReport(req.body, req.user.id, req.path)
         res.status(201).json(newReport)
     })
 })
 
-reportsRoute.post('/csv', uploadCsv.single("file"), (req, res) => {
+reportsRoute.post('/csv', authMiddleware, uploadCsv.single("file"), (req, res) => {
     const results = []
-    const fields = ["category", "urgency", "message"]
+    let count = 0
+    const requiredFields = ["category", "urgency", "message"]
+    const fieldsWithImage = ["category", "urgency", "message", "imagePath"]
+
     if (!req.file) {
         return res.status(400).json({ message: 'no file upload' })
     }
     const stream = fs.createReadStream(req.file.path)
         .pipe(csv())
         .on("headers", (headers) => {
-            if (JSON.stringify(fields) !== JSON.stringify(headers)) {
+            if (
+                JSON.stringify(headers) !== JSON.stringify(requiredFields) &&
+                JSON.stringify(headers) !== JSON.stringify(fieldsWithImage)
+            ) {
                 fs.unlinkSync(req.file.path)
                 stream.destroy()
                 return res.status(400).json({ message: 'The CSV structure is incorrect.' })
             }
         })
         .on("data", (data) => {
-            if (Object.values(data).some(v => !v || v.trim() === "")) {
+            const hasEmpty = requiredFields.some(field =>
+                !data[field] || data[field].trim() === ""
+            )
+            if (hasEmpty) {
                 fs.unlinkSync(req.file.path)
                 stream.destroy()
-                return res.status(400).json({ message: 'The CSV structure is incorrect.' })
+                return res.status(400).json({ message: 'The CSV structure is incorrect2.' })
             }
             results.push(data)
         })
         .on("end", () => {
+            results.map(report => {
+                count++
+                saveReport(report, req.user.id, req.path)
+            })
             return res.status(200).json({
                 message: "CSV-received",
-                data: results
+                data: results,
+                importedCount: count
             })
         })
+})
+
+reportsRoute.get("/", authMiddleware, (req, res) => {
+    const user = req.user
+    const reports = getReports(user)
+    res.status(200).json(reports)
+})
+
+reportsRoute.get('/:id', authMiddleware, (req, res)=>{
+    const {id} = req.params
+    const reports = getReports(req.user)
+    const report = reports.filter(report => {
+        return report.id === id
+    })
+    if (report.length > 0){
+        return res.status(200).json({Report: report})
+    }
+    return res.status(404).json({message: "report not found!"})
 })
