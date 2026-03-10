@@ -38,15 +38,19 @@ function LoginPage() {
         }
     }
     return (
-        <div className='login'>
-            <label htmlFor="">Agent Code</label>
-            <input type="text" placeholder='Agent Code...' onChange={(e) => setAgentCode(e.target.value)} />
+        <>
+            <h1></h1>
+            <div className='login'>
+                <label htmlFor="">Agent Code</label>
+                <input type="text" placeholder='Agent Code...' onChange={(e) => setAgentCode(e.target.value)} />
 
-            <label htmlFor="">Password</label>
-            <input type="password" placeholder='Password...' onChange={(e) => setPassword(e.target.value)} />
-
-            <button onClick={() => submit()}>Submit</button>
-        </div>
+                <label htmlFor="">Password</label>
+                <input type="password" placeholder='Password...' onChange={(e) => setPassword(e.target.value)} />
+                <div className='submit'>
+                    <button onClick={() => submit()}>Submit</button>
+                </div>
+            </div>
+        </>
     )
 }
 
