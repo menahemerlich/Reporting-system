@@ -38,7 +38,7 @@ function LoginPage() {
         }
     }
     return (
-        <div>
+        <div className='login'>
             <label htmlFor="">Agent Code</label>
             <input type="text" placeholder='Agent Code...' onChange={(e) => setAgentCode(e.target.value)} />
 
