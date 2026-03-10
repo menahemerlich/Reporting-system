@@ -54,5 +54,29 @@
     "passwordHash": "$2b$10$rYJqTpcXBQ52Br7STps7Y.g7HzodWWTGaLM6Q9R/bR2MZY6dQydwe",
     "role": "agent",
     "createdAt": "2026-03-09T15:41:00.495Z"
+  },
+  {
+    "id": "fIW",
+    "agentCode": "a152",
+    "fullName": "rony",
+    "passwordHash": "$2b$10$Fc8131aEoKne7pOpu03g5.GD7tVKHc9mphlM9hzAuO.RxbJ.zrVSK",
+    "role": "agent",
+    "createdAt": "2026-03-10T12:55:40.691Z"
+  },
+  {
+    "id": "VKy",
+    "agentCode": "test",
+    "fullName": "test",
+    "passwordHash": "$2b$10$wTmjSq0m7cDd9ogOV3bmzuu4X7LegFXYHh6.dqpH0MdghEvFpys..",
+    "role": "admin",
+    "createdAt": "2026-03-10T13:05:53.924Z"
+  },
+  {
+    "id": "EEo",
+    "agentCode": "a156",
+    "fullName": "fire",
+    "passwordHash": "$2b$10$UZp3FmGE0vEBMIBNf3dtIOYsHNehcRlwdjKWvOfNGGI01ni8DD/Ey",
+    "role": "agent",
+    "createdAt": "2026-03-10T13:12:50.705Z"
   }
 ]

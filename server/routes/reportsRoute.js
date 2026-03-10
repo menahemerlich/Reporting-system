@@ -119,10 +119,13 @@ reportsRoute.post('/csv', authMiddleware, (req, res) => {
 
 reportsRoute.get("/", authMiddleware, (req, res) => {
     const user = req.user
-    const { category, urgency, message } = req.query
+    const {agentId, category, urgency, message } = req.query
     const reports = getReports(user)
     let filtered = reports
 
+    if (agentId) {
+        filtered = filtered.filter(item => item.userId == agentId)
+    }
     if (category) {
         filtered = filtered.filter(item => item.category === category)
     }

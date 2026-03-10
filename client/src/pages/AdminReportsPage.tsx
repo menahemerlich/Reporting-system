@@ -1,10 +1,10 @@
 import { useContext, useEffect, useState } from 'react'
 import { AuthContext } from '../AuthContext'
 
-function MyReportsPage() {
+function AdminReportsPage() {
+    const [agentId, setAgentId] = useState("")
     const [category, setCategory] = useState("")
     const [urgency, setUrgency] = useState("")
-    const [message, setMessage] = useState("")
     const [data, setData] = useState<Array<{
         id: string;
         userId: string
@@ -20,9 +20,9 @@ function MyReportsPage() {
     async function fetchReports() {
         const params = new URLSearchParams()
 
+        if (agentId) params.append("agentId", agentId)
         if (category) params.append("category", category)
         if (urgency) params.append("urgency", urgency)
-        if (message) params.append("message", message)
 
         const response = await fetch(
             `http://localhost:3001/reports?${params.toString()}`,
@@ -33,6 +33,8 @@ function MyReportsPage() {
             }
         )
         const result = await response.json()
+        console.log(result);
+        
         setData(result)
     }
 
@@ -46,18 +48,17 @@ function MyReportsPage() {
             fetchReports()
         }, 1000)
         return () => clearTimeout(timer)
-    }, [category, urgency, message, token])
+    }, [agentId, category, urgency, token])
     return (
         <div>
+            <label>Agent ID</label>
+            <input onChange={(e) => setAgentId(e.target.value)} />
             <label>Category</label>
             <input onChange={(e) => setCategory(e.target.value)} />
-
             <label>Urgency</label>
             <input onChange={(e) => setUrgency(e.target.value)} />
 
-            <label>Message</label>
-            <input onChange={(e) => setMessage(e.target.value)} />
-            {data.length > 0 ? (
+            {data.length > 0 && (
                 <table>
                     <thead>
                         <tr>
@@ -87,9 +88,9 @@ function MyReportsPage() {
                         ))}
                     </tbody>
                 </table>
-            ):<div>No reports found</div>}
+            )}
         </div>
     )
 }
 
-export default MyReportsPage
+export default AdminReportsPage
