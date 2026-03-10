@@ -5,6 +5,11 @@ import { AuthProvider } from './AuthContext'
 import LoginProtected from './components/LoginProtected'
 import AgentDashboard from './pages/AgentDashboard'
 import NewReportPage from './pages/NewReportPage'
+import CSVUploadPage from './pages/CSVUploadPage'
+import MyReportsPage from './pages/MyReportsPage'
+import AdminProtected from './components/AdminProtected'
+import AdminDashboard from './pages/AdminDashboard'
+import AdminUsersPage from './pages/AdminUsersPage'
 
 function App() {
 
@@ -13,31 +18,16 @@ function App() {
       <AuthProvider>
         <Routes>
           <Route path='/login' element={<LoginPage />} />
-          <Route
-            path="/dashboard"
-            element={
-              <LoginProtected>
-                <AgentDashboard />
-              </LoginProtected>
-            }
-          />
-
-          <Route
-            path="/dashboard/my-reports"
-            element={
-              <LoginProtected>
-                <div>MyReports</div>
-              </LoginProtected>
-            }
-          />
-          <Route
-            path="/dashboard/new-report"
-            element={
-              <LoginProtected>
-                <NewReportPage/>
-              </LoginProtected>
-            }
-          />
+          <Route element={<LoginProtected />}>
+            <Route path="/dashboard" element={<AgentDashboard />} />
+            <Route path="/dashboard/my-reports" element={<MyReportsPage/>} />
+            <Route path="/dashboard/new-report" element={<NewReportPage />} />
+            <Route path="/dashboard/csv-upload" element={<CSVUploadPage />} />
+          </Route>
+          <Route element={<AdminProtected />}>
+            <Route path="/admin/dashboard" element={<AdminDashboard />} />
+            <Route path="/admin/agents" element={<AdminUsersPage />} />
+          </Route>
         </Routes>
       </AuthProvider>
     </BrowserRouter>

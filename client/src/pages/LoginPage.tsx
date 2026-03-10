@@ -24,7 +24,11 @@ function LoginPage() {
                 localStorage.setItem("token", data.token)
                 setToken(data.token)
                 setUser(data.user)
-                navigate('/dashboard')
+                if (data.user.role === "admin") {
+                    navigate('/admin/dashboard')
+                } else {
+                    navigate('/dashboard')
+                }
             } else {
                 alert(data.message + '. Try agein!')
             }

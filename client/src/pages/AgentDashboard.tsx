@@ -5,8 +5,9 @@ function AgentDashboard() {
   return (
     <div>
         <button onClick={()=> navigate('new-report')}>New Report</button>
-        
         <button onClick={()=> navigate('my-reports')}>My reports</button>
+        <button onClick={()=> navigate('csv-upload')}>CSV Upload</button>
+
     </div>
   )
 }

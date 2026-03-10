@@ -10,7 +10,7 @@ export const authRoute = express.Router()
 authRoute.post('/login', async (req, res) => {
     if (req.body.agentCode && req.body.password && typeof req.body.agentCode === 'string' && typeof req.body.password === 'string') {
         const { agentCode, password } = req.body
-        for (const user of users.users) {
+        for (const user of users) {
             if (user.agentCode === agentCode && (await bcrypt.compare(password, user.passwordHash))) {
                 const token = jwt.sign(
                     {

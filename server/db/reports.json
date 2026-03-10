@@ -38,5 +38,135 @@
     "imagePath": null,
     "sourceType": "agent",
     "createdAt": "2026-03-09T14:28:14.072Z"
+  },
+  {
+    "id": "nmuDZ",
+    "userId": 1,
+    "category": "efw ",
+    "urgency": "vfgg ",
+    "message": "ggg",
+    "imagePath": null,
+    "sourceType": "agent",
+    "createdAt": "2026-03-09T16:31:50.986Z"
+  },
+  {
+    "id": "lOk3h",
+    "userId": 2,
+    "category": "test",
+    "urgency": "5",
+    "message": "test",
+    "imagePath": null,
+    "sourceType": "agent",
+    "createdAt": "2026-03-10T09:32:07.011Z"
+  },
+  {
+    "id": "MqtBP",
+    "userId": 1,
+    "category": "network",
+    "urgency": "high",
+    "message": "Internet is down in the office",
+    "imagePath": null,
+    "sourceType": "CSV",
+    "createdAt": "2026-03-10T10:14:35.684Z"
+  },
+  {
+    "id": "g9oYX",
+    "userId": 1,
+    "category": "hardware",
+    "urgency": "medium",
+    "message": "Printer not working",
+    "imagePath": null,
+    "sourceType": "CSV",
+    "createdAt": "2026-03-10T10:14:35.685Z"
+  },
+  {
+    "id": "JlO4S",
+    "userId": 1,
+    "category": "software",
+    "urgency": "low",
+    "message": "Application is slow to respond",
+    "imagePath": null,
+    "sourceType": "CSV",
+    "createdAt": "2026-03-10T10:14:35.685Z"
+  },
+  {
+    "id": "KSq4a",
+    "userId": 1,
+    "category": "network",
+    "urgency": "high",
+    "message": "WiFi disconnecting frequently",
+    "imagePath": null,
+    "sourceType": "CSV",
+    "createdAt": "2026-03-10T10:14:35.686Z"
+  },
+  {
+    "id": "XdOUV",
+    "userId": 1,
+    "category": "hardware",
+    "urgency": "medium",
+    "message": "Laptop battery not charging",
+    "imagePath": null,
+    "sourceType": "CSV",
+    "createdAt": "2026-03-10T10:14:35.687Z"
+  },
+  {
+    "id": "05lil",
+    "userId": 1,
+    "category": "software",
+    "urgency": "low",
+    "message": "Login page loading slowly",
+    "imagePath": null,
+    "sourceType": "CSV",
+    "createdAt": "2026-03-10T10:14:35.687Z"
+  },
+  {
+    "id": "47tNm",
+    "userId": 1,
+    "category": "network",
+    "urgency": "high",
+    "message": "Router keeps restarting",
+    "imagePath": null,
+    "sourceType": "CSV",
+    "createdAt": "2026-03-10T10:14:35.688Z"
+  },
+  {
+    "id": "gYsYe",
+    "userId": 1,
+    "category": "hardware",
+    "urgency": "low",
+    "message": "Keyboard keys are stuck",
+    "imagePath": null,
+    "sourceType": "CSV",
+    "createdAt": "2026-03-10T10:14:35.688Z"
+  },
+  {
+    "id": "DMLj2",
+    "userId": 1,
+    "category": "software",
+    "urgency": "medium",
+    "message": "Error when saving document",
+    "imagePath": null,
+    "sourceType": "CSV",
+    "createdAt": "2026-03-10T10:14:35.688Z"
+  },
+  {
+    "id": "mbZSu",
+    "userId": 1,
+    "category": "network",
+    "urgency": "medium",
+    "message": "VPN connection unstable",
+    "imagePath": null,
+    "sourceType": "CSV",
+    "createdAt": "2026-03-10T10:14:35.689Z"
+  },
+  {
+    "id": "G-LHm",
+    "userId": 4,
+    "category": "test 2",
+    "urgency": "4",
+    "message": "בא נראה מה קורה",
+    "imagePath": null,
+    "sourceType": "agent",
+    "createdAt": "2026-03-10T10:19:49.464Z"
   }
 ]

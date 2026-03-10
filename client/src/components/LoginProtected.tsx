@@ -1,11 +1,11 @@
-import { useContext, type ReactNode } from "react"
+import { useContext } from "react"
 import { AuthContext } from "../AuthContext"
-import { Navigate } from "react-router-dom"
+import { Navigate, Outlet } from "react-router-dom"
 
-function LoginProtected({ children }: { children: ReactNode }) {
-  const { token } = useContext(AuthContext)  
-  if (!token) return <Navigate to="/login" />
+function LoginProtected() {
+    const { token, user } = useContext(AuthContext);
+    if (!token || !user) return <Navigate to="/login" />;
 
-  return children
+    return <Outlet />
 }
 export default LoginProtected

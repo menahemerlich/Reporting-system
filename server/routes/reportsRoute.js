@@ -34,7 +34,16 @@ const upload = multer({
     }
 })
 
-const uploadCsv = multer({ dest: 'uploads/' })
+const uploadCsv = multer({
+    dest: 'uploads/',
+    fileFilter: (req, file, cb) => {        
+        if (file.mimetype !== 'text/csv') {
+            return cb(new Error("Only CSV allowed"))
+        }
+        cb(null, true)
+    }
+})
+
 export const reportsRoute = express.Router()
 
 reportsRoute.post('/', authMiddleware, (req, res) => {
@@ -58,65 +67,82 @@ reportsRoute.post('/', authMiddleware, (req, res) => {
     })
 })
 
-reportsRoute.post('/csv', authMiddleware, uploadCsv.single("file"), (req, res) => {
-    const results = []
-    let count = 0
-    const requiredFields = ["category", "urgency", "message"]
-    const fieldsWithImage = ["category", "urgency", "message", "imagePath"]
+reportsRoute.post('/csv', authMiddleware, (req, res) => {
+    uploadCsv.single('file')(req, res, (err) => {
+        if (err) {
+            return res.status(415).json({ message: err.message })
+        }
+        const results = []
+        let count = 0
+        const requiredFields = ["category", "urgency", "message"]
+        const fieldsWithImage = ["category", "urgency", "message", "imagePath"]
 
-    if (!req.file) {
-        return res.status(400).json({ message: 'no file upload' })
-    }
-    const stream = fs.createReadStream(req.file.path)
-        .pipe(csv())
-        .on("headers", (headers) => {
-            if (
-                JSON.stringify(headers) !== JSON.stringify(requiredFields) &&
-                JSON.stringify(headers) !== JSON.stringify(fieldsWithImage)
-            ) {
-                fs.unlinkSync(req.file.path)
-                stream.destroy()
-                return res.status(400).json({ message: 'The CSV structure is incorrect.' })
-            }
-        })
-        .on("data", (data) => {
-            const hasEmpty = requiredFields.some(field =>
-                !data[field] || data[field].trim() === ""
-            )
-            if (hasEmpty) {
-                fs.unlinkSync(req.file.path)
-                stream.destroy()
-                return res.status(400).json({ message: 'The CSV structure is incorrect2.' })
-            }
-            results.push(data)
-        })
-        .on("end", () => {
-            results.map(report => {
-                count++
-                saveReport(report, req.user.id, req.path)
+        if (!req.file) {
+            return res.status(400).json({ message: 'no file upload' })
+        }
+        const stream = fs.createReadStream(req.file.path)
+            .pipe(csv())
+            .on("headers", (headers) => {
+                if (
+                    JSON.stringify(headers) !== JSON.stringify(requiredFields) &&
+                    JSON.stringify(headers) !== JSON.stringify(fieldsWithImage)
+                ) {
+                    fs.unlinkSync(req.file.path)
+                    stream.destroy()
+                    return res.status(400).json({ message: 'The CSV structure is incorrect.' })
+                }
             })
-            return res.status(200).json({
-                message: "CSV-received",
-                data: results,
-                importedCount: count
+            .on("data", (data) => {
+                const hasEmpty = requiredFields.some(field =>
+                    !data[field] || data[field].trim() === ""
+                )
+                if (hasEmpty) {
+                    fs.unlinkSync(req.file.path)
+                    stream.destroy()
+                    return res.status(400).json({ message: 'Some reports are missing required fields.' })
+                }
+                results.push(data)
             })
-        })
+            .on("end", () => {
+                results.map(report => {
+                    count++
+                    saveReport(report, req.user.id, req.path)
+                })
+                return res.status(200).json({
+                    message: "CSV-received",
+                    data: results,
+                    importedCount: count
+                })
+            })
+    })
 })
 
 reportsRoute.get("/", authMiddleware, (req, res) => {
     const user = req.user
+    const { category, urgency, message } = req.query
     const reports = getReports(user)
-    res.status(200).json(reports)
+    let filtered = reports
+
+    if (category) {
+        filtered = filtered.filter(item => item.category === category)
+    }
+    if (urgency) {
+        filtered = filtered.filter(item => item.urgency === urgency)
+    }
+    if (message) {
+        filtered = filtered.filter(item => item.message === message)
+    }
+    res.status(200).json(filtered)
 })
 
-reportsRoute.get('/:id', authMiddleware, (req, res)=>{
-    const {id} = req.params
+reportsRoute.get('/:id', authMiddleware, (req, res) => {
+    const { id } = req.params
     const reports = getReports(req.user)
     const report = reports.filter(report => {
         return report.id === id
     })
-    if (report.length > 0){
-        return res.status(200).json({Report: report})
+    if (report.length > 0) {
+        return res.status(200).json({ Report: report })
     }
-    return res.status(404).json({message: "report not found!"})
+    return res.status(404).json({ message: "report not found!" })
 })
