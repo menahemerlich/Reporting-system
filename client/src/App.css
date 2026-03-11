@@ -1,0 +1,61 @@
+#root {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #5a5c62;
+}
+.login {
+    padding: 3rem;
+    width: 350px;
+    border-radius: 20px;
+    box-shadow: 3px 3px 10px gray;
+    border: 10px solid transparent;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    background:
+        linear-gradient(90deg, rgb(150, 148, 148), rgb(98, 98, 100)) padding-box,
+        linear-gradient(45deg, rgb(98, 98, 100), rgb(150, 148, 148)) border-box;
+}
+
+.login input {
+    padding: 20px 10px;
+    border-radius: 10px;
+    border: none;
+    background-color: rgb(239, 239, 239);
+    box-shadow: -3px -3px 2px rgb(138, 138, 138) inset,
+        3px 3px 3px rgb(255, 255, 255) inset;
+
+}
+
+.login .submit {
+    align-self: center;
+    margin-top: 1rem;
+    padding: 10px;
+    border-radius: 35px;
+    background-color: rgb(94, 93, 94);
+    box-shadow: 5px 5px 3px gray,
+        3px 3px 3px rgb(52, 52, 52) inset,
+        -1px -1px 3px gray,
+        3px 3px 3px rgb(52, 52, 52) inset;
+
+}
+
+.login .submit button {
+    font-size: 20px;
+    font-weight: bold;
+    padding: 6px 28px;
+    border-radius: 35px;
+    background-color: rgb(116, 114, 116);
+    border: none;
+    box-shadow: 3px 3px 3px gray inset,
+        3px 3px 3px rgb(52, 52, 52);
+}
+
+.login .submit button:active {
+    box-shadow: 3px 3px 3px gray inset,
+        1px 1px 3px rgb(52, 52, 52);
+}

@@ -86,5 +86,13 @@
     "passwordHash": "$2b$10$haaa/d17b4LUoXf8CFO4xe.six7w5kKY.qQIGJdUpvwwv1Omoe1iy",
     "role": "admin",
     "createdAt": "2026-03-10T15:51:38.190Z"
+  },
+  {
+    "id": "Ub-",
+    "agentCode": "2369",
+    "fullName": "etty",
+    "passwordHash": "$2b$10$TxS4bzB3HYL4MeGeyuaUDeLBzSHmaDJwXf3bbA6dI5RUVfIXlzNqW",
+    "role": "admin",
+    "createdAt": "2026-03-10T21:43:59.944Z"
   }
 ]
