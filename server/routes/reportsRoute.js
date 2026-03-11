@@ -145,7 +145,7 @@ reportsRoute.get('/:id', authMiddleware, (req, res) => {
         return report.id === id
     })
     if (report.length > 0) {
-        return res.status(200).json({ Report: report })
+        return res.status(200).json(report[0])
     }
     return res.status(404).json({ message: "report not found!" })
 })

@@ -68,6 +68,38 @@ function AdminUsersPage() {
     return (
         <div className='usersPage'>
 
+            <div className='creatUser'>
+                <h1>Create new user</h1>
+                <div className="newForm">
+                    <label>Agent code</label>
+                    <input
+                        type="text"
+                        placeholder='e.g. `a100`'
+                        value={agentCode}
+                        onChange={(e) => setAgentCode(e.target.value)}
+                    />
+
+                    <label>Full name</label>
+                    <input
+                        type="text"
+                        placeholder='e.g. `david`'
+                        value={fullName}
+                        onChange={(e) => setFullName(e.target.value)}
+                    />
+
+                    <label>Role</label>
+                    <select
+                        value={role}
+                        onChange={(e) => setRole(e.target.value)}
+                    >
+                        <option value="" >Please select</option>
+                        <option value="agent">Agent</option>
+                        <option value="admin">Admin</option>
+                    </select>
+
+                    <button onClick={createUser}>Create User</button>
+                </div>
+            </div>
             <div className='users'>
                 <h1>Users</h1>
 
@@ -98,38 +130,6 @@ function AdminUsersPage() {
                 ) : (
                     <div>No users found</div>
                 )}
-            </div>
-            <div className='creatUser'>
-                <h1>Create new user</h1>
-                <div className="newUser">
-                    <label>Agent code</label>
-                    <input
-                        type="text"
-                        placeholder='e.g. `a100`'
-                        value={agentCode}
-                        onChange={(e) => setAgentCode(e.target.value)}
-                    />
-
-                    <label>Full name</label>
-                    <input
-                        type="text"
-                        placeholder='e.g. `david`'
-                        value={fullName}
-                        onChange={(e) => setFullName(e.target.value)}
-                    />
-
-                    <label>Role</label>
-                    <select
-                        value={role}
-                        onChange={(e) => setRole(e.target.value)}
-                    >
-                        <option value="" >Please select</option>
-                        <option value="agent">Agent</option>
-                        <option value="admin">Admin</option>
-                    </select>
-
-                    <button onClick={createUser}>Create User</button>
-                </div>
             </div>
         </div>
     )

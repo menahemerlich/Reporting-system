@@ -27,7 +27,7 @@ function CSVUploadPage() {
 
         const data = await response.json()
         console.log(data);
-        
+
         if (response.ok) {
             alert(`The report was sent successfully. Reports was upload: ${data.importedCount}`)
             navigate('/dashboard')
@@ -36,8 +36,13 @@ function CSVUploadPage() {
         }
     }
     return (
-        <div>
-            <input type="file" name="file" onChange={handleFile} />
+        <div className="fileUpload newForm csvUpload">
+            <label htmlFor="fileInput" className="fileLabel">
+                📎 Upload CSV
+            </label>
+
+            <input id="fileInput" type="file" name="file" onChange={handleFile} />
+            {file ? <p className="fileName">Selected file: {file.name}</p> : <p className="fileName">No file selected</p>}
             <button onClick={submit}>Submit</button>
         </div>
     )

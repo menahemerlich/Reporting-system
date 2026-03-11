@@ -7,6 +7,7 @@ function AdminReportsPage() {
     const [agentId, setAgentId] = useState("")
     const [category, setCategory] = useState("")
     const [urgency, setUrgency] = useState("")
+    const [reportId, setReportId] = useState("")
     const [data, setData] = useState<Array<{
         id: string;
         userId: string
@@ -35,13 +36,29 @@ function AdminReportsPage() {
             }
         )
         const result = await response.json()
-        console.log(result);
-
         setData(result)
+    }
+    async function fetchReportById() {
+        if (!reportId) return
+        const response = await fetch(
+            `http://localhost:3001/reports/${reportId}`,
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }
+        )
+        const result = await response.json()
+        if (response.ok) {
+            setData(result ? [result] : [])
+        } else {
+            setData([])
+        }
     }
 
     useEffect(() => {
         if (!token) return
+        if (reportId) return
         if (data.length === 0) {
             fetchReports()
             return
@@ -50,20 +67,36 @@ function AdminReportsPage() {
             fetchReports()
         }, 1000)
         return () => clearTimeout(timer)
-    }, [agentId, category, urgency, token])
+    }, [reportId, agentId, category, urgency, token])
+    useEffect(() => {
+        fetchReportById()
+    }, [reportId])
+
     return (
-        <div>
-            <button onClick={() => navigate('/dashboard/new-report')}>New Report</button>
-            <button onClick={() => navigate('/dashboard/csv-upload')}>CSV Upload</button>
+        <div id='reports'>
+            <div className="dashboard">
+                <button onClick={() => navigate('/dashboard/new-report')}>New Report</button>
+                <button onClick={() => navigate('/dashboard/csv-upload')}>CSV Upload</button>
+            </div>
+            <div className="search">
+                <div>
+                    <h3>Search by: </h3>
+                </div>
+                <div>
+                    <label>Agent ID: </label>
+                    <input onChange={(e) => setAgentId(e.target.value)} />
+                    <label>Category: </label>
+                    <input onChange={(e) => setCategory(e.target.value)} />
+                    <label>Urgency: </label>
+                    <input onChange={(e) => setUrgency(e.target.value)} />
+                </div>
+                <div>
+                    <label>Report ID: </label>
+                    <input onChange={(e) => setReportId(e.target.value)} />
+                </div>
+            </div>
 
-            <label>Agent ID</label>
-            <input onChange={(e) => setAgentId(e.target.value)} />
-            <label>Category</label>
-            <input onChange={(e) => setCategory(e.target.value)} />
-            <label>Urgency</label>
-            <input onChange={(e) => setUrgency(e.target.value)} />
-
-            {data.length > 0 && (
+            {data.length > 0 ? (
                 <table className='Table'>
                     <thead>
                         <tr>
@@ -79,8 +112,8 @@ function AdminReportsPage() {
                     </thead>
 
                     <tbody>
-                        {data.map(item => (
-                            <tr key={item.id}>
+                        {data.map((item, index) => (
+                            <tr key={index}>
                                 <td>{item.id}</td>
                                 <td>{item.userId}</td>
                                 <td>{item.category}</td>
@@ -88,12 +121,12 @@ function AdminReportsPage() {
                                 <td>{item.message}</td>
                                 <td>{item.sourceType}</td>
                                 <td>{item.createdAt}</td>
-                                <td>{item.imagePath != null?<img src={`http://localhost:3001/${item.imagePath}`} alt="" />:null}</td>
+                                <td>{item.imagePath != null ? <img src={`http://localhost:3001/${item.imagePath}`} alt="" /> : null}</td>
                             </tr>
                         ))}
                     </tbody>
                 </table>
-            )}
+            ) : (<p>No reports found.</p>)}
         </div>
     )
 }
