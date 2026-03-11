@@ -9,7 +9,7 @@ function NewReportPage() {
     const [message, setMessage] = useState("")
     const [file, setFile] = useState<File | null>(null)
 
-    const { token } = useContext(AuthContext)
+    const { token, user } = useContext(AuthContext)
 
     function handleFile(e: React.ChangeEvent<HTMLInputElement>) {
         if (e.target.files) {
@@ -37,10 +37,10 @@ function NewReportPage() {
         })
 
         const data = await response.json()
-        if (response.ok){
+        if (response.ok) {
             alert(`The report was sent successfully. Report id: ${data.id}`)
-            navigate('/dashboard')
-        }else{
+            navigate(user.role === "admin" ? '/admin/dashboard' : '/dashboard')
+        } else {
             alert(data.message)
         }
     }
@@ -52,10 +52,10 @@ function NewReportPage() {
             <input onChange={(e) => setCategory(e.target.value)} required />
 
             <label>Urgency</label>
-            <input onChange={(e) => setUrgency(e.target.value)} required/>
+            <input onChange={(e) => setUrgency(e.target.value)} required />
 
             <label>Message</label>
-            <input onChange={(e) => setMessage(e.target.value)} required/>
+            <input onChange={(e) => setMessage(e.target.value)} required />
 
             <input type="file" name="image" onChange={handleFile} />
 

@@ -3,9 +3,8 @@ import Header from "../components/Header"
 
 function Layout() {
   return (
-    <div>
+    <div id="pages">
       <Header />
-
       <main>
         <Outlet />
       </main>

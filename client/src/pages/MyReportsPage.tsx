@@ -58,7 +58,7 @@ function MyReportsPage() {
             <label>Message</label>
             <input onChange={(e) => setMessage(e.target.value)} />
             {data.length > 0 ? (
-                <table>
+                <table className='Table'>
                     <thead>
                         <tr>
                             <th>ID</th>
@@ -82,7 +82,7 @@ function MyReportsPage() {
                                 <td>{item.message}</td>
                                 <td>{item.sourceType}</td>
                                 <td>{item.createdAt}</td>
-                                <td><img src={`http://localhost:3001/${item.imagePath}`} alt="" /></td>
+                                <td>{item.imagePath != null?<img src={`http://localhost:3001/${item.imagePath}`} alt="" />:null}</td>
                             </tr>
                         ))}
                     </tbody>

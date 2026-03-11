@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom"
 function AdminDashboard() {
   const navigate = useNavigate()
   return (
-    <div>
+    <div className="adminDes">
         <button onClick={() => navigate('/admin/agents')}>Agent Management</button>
         <button onClick={() => navigate('/admin/reports')}>Reports</button>
     </div>

@@ -1,4 +1,4 @@
-#root {
+#loginPage {
     width: 100vw;
     height: 100vh;
     display: flex;
@@ -6,6 +6,12 @@
     align-items: center;
     font-family: Arial, Helvetica, sans-serif;
     background: #5a5c62;
+}
+#pages{
+    width: 100vw;
+    min-height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #cee2eb;
 }
 .login {
     padding: 3rem;
@@ -31,7 +37,7 @@
 
 }
 
-.login .submit {
+.cover {
     align-self: center;
     margin-top: 1rem;
     padding: 10px;
@@ -44,7 +50,7 @@
 
 }
 
-.login .submit button {
+.cover button {
     font-size: 20px;
     font-weight: bold;
     padding: 6px 28px;
@@ -55,7 +61,155 @@
         3px 3px 3px rgb(52, 52, 52);
 }
 
-.login .submit button:active {
+.cover button:active {
     box-shadow: 3px 3px 3px gray inset,
         1px 1px 3px rgb(52, 52, 52);
+}
+
+.dashboard {
+    background-color: aqua;
+}
+
+/* #pages {
+    width: 100vw;
+    min-height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+} */
+
+.navbar {
+    height: 100px;
+    background: linear-gradient(90deg, rgb(150, 148, 148), rgb(98, 98, 100));
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+    border-bottom: 2px solid;
+
+}
+
+.navButtons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logout {
+    border-radius: 50%;
+    margin-left: 0.5rem;
+}
+
+#logout {
+    border-radius: 50%;
+    padding: 0.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.adminDes{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 3rem ;
+}
+.adminDes button{
+    padding: 1rem 2rem;
+    margin: 0 1rem;
+    border-radius: 10px;
+    background-color: rgb(94, 93, 94);
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    border: none;
+    box-shadow: 5px 5px 3px gray;
+}
+.adminDes button:hover{
+    background-color: rgb(116, 114, 116);
+    border-left: 5px solid red;
+}
+.usersPage{
+    margin: 0 5rem;
+    padding: 5rem;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+}
+.creatUser{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+.newUser{
+    border-radius: 15px;
+    background-color: antiquewhite;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    text-align: start;
+    padding: 1rem 5rem ;
+}
+.newUser input{
+    height: 30px;
+    border-radius: 5px;
+    padding: 0 5px;
+    border:1px solid #5a5c62;
+}
+input::placeholder {
+  font-style: italic;
+}
+
+.newUser button{
+    padding: 10px 22px;
+    margin: 1rem;
+    border-radius: 8px;
+    border: none;
+    background: linear-gradient(135deg, #81ff4f, #6ef62f);
+    color: rgb(76, 57, 57);
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.newUser button:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(0,0,0,0.2);
+}
+
+.newUser button:active{
+    transform: translateY(1px);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+.Table{
+    width: 90%;
+    border-collapse: collapse;
+    margin: 20px;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.Table thead{
+    background: #f5f7fb;
+}
+
+.Table th{
+    padding: 12px 16px;
+    font-weight: 600;
+    color: #444;
+    font-size: 14px;
+}
+
+.Table td{
+    padding: 12px 16px;
+    border-top: 1px solid #eee;
+    font-size: 14px;
+    height: 50px;
+}
+
+.Table tbody tr:hover{
+    background: #f8faff;
+}
+img{
+    width: 50px;
+    height: 50px;
 }

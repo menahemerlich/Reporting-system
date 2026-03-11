@@ -48,7 +48,10 @@ function AdminUsersPage() {
                 setFullName("")
                 setRole("")
                 alert(`User created successfully. id: ${result.user.id}`)
-            } else{
+            } else {
+                setAgentCode("")
+                setFullName("")
+                setRole("")
                 alert(result.message)
             }
             await fetchUsers()
@@ -63,42 +66,13 @@ function AdminUsersPage() {
     }, [])
 
     return (
-        <div>
-            <div>
-                <h1>Create new user</h1>
+        <div className='usersPage'>
 
-                <label>Agent code</label>
-                <input
-                    type="text"
-                    value={agentCode}
-                    onChange={(e) => setAgentCode(e.target.value)}
-                />
-
-                <label>Full name</label>
-                <input
-                    type="text"
-                    value={fullName}
-                    onChange={(e) => setFullName(e.target.value)}
-                />
-
-                <label>Role</label>
-                <select
-                    value={role}
-                    onChange={(e) => setRole(e.target.value)}
-                >
-                    <option value=""></option>
-                    <option value="agent">Agent</option>
-                    <option value="admin">Admin</option>
-                </select>
-
-                <button onClick={createUser}>Create User</button>
-            </div>
-
-            <div>
+            <div className='users'>
                 <h1>Users</h1>
 
                 {data.length > 0 ? (
-                    <table>
+                    <table className="Table">
                         <thead>
                             <tr>
                                 <th>id</th>
@@ -124,6 +98,38 @@ function AdminUsersPage() {
                 ) : (
                     <div>No users found</div>
                 )}
+            </div>
+            <div className='creatUser'>
+                <h1>Create new user</h1>
+                <div className="newUser">
+                    <label>Agent code</label>
+                    <input
+                        type="text"
+                        placeholder='e.g. `a100`'
+                        value={agentCode}
+                        onChange={(e) => setAgentCode(e.target.value)}
+                    />
+
+                    <label>Full name</label>
+                    <input
+                        type="text"
+                        placeholder='e.g. `david`'
+                        value={fullName}
+                        onChange={(e) => setFullName(e.target.value)}
+                    />
+
+                    <label>Role</label>
+                    <select
+                        value={role}
+                        onChange={(e) => setRole(e.target.value)}
+                    >
+                        <option value="" >Please select</option>
+                        <option value="agent">Agent</option>
+                        <option value="admin">Admin</option>
+                    </select>
+
+                    <button onClick={createUser}>Create User</button>
+                </div>
             </div>
         </div>
     )

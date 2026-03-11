@@ -1,7 +1,9 @@
 import { useContext, useEffect, useState } from 'react'
 import { AuthContext } from '../AuthContext'
+import { useNavigate } from 'react-router-dom'
 
 function AdminReportsPage() {
+    const navigate = useNavigate()
     const [agentId, setAgentId] = useState("")
     const [category, setCategory] = useState("")
     const [urgency, setUrgency] = useState("")
@@ -34,7 +36,7 @@ function AdminReportsPage() {
         )
         const result = await response.json()
         console.log(result);
-        
+
         setData(result)
     }
 
@@ -51,6 +53,9 @@ function AdminReportsPage() {
     }, [agentId, category, urgency, token])
     return (
         <div>
+            <button onClick={() => navigate('/dashboard/new-report')}>New Report</button>
+            <button onClick={() => navigate('/dashboard/csv-upload')}>CSV Upload</button>
+
             <label>Agent ID</label>
             <input onChange={(e) => setAgentId(e.target.value)} />
             <label>Category</label>
@@ -59,7 +64,7 @@ function AdminReportsPage() {
             <input onChange={(e) => setUrgency(e.target.value)} />
 
             {data.length > 0 && (
-                <table>
+                <table className='Table'>
                     <thead>
                         <tr>
                             <th>ID</th>
@@ -83,7 +88,7 @@ function AdminReportsPage() {
                                 <td>{item.message}</td>
                                 <td>{item.sourceType}</td>
                                 <td>{item.createdAt}</td>
-                                <td><img src={`http://localhost:3001/${item.imagePath}`} alt="" /></td>
+                                <td>{item.imagePath != null?<img src={`http://localhost:3001/${item.imagePath}`} alt="" />:null}</td>
                             </tr>
                         ))}
                     </tbody>
