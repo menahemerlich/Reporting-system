@@ -78,5 +78,13 @@
     "passwordHash": "$2b$10$UZp3FmGE0vEBMIBNf3dtIOYsHNehcRlwdjKWvOfNGGI01ni8DD/Ey",
     "role": "agent",
     "createdAt": "2026-03-10T13:12:50.705Z"
+  },
+  {
+    "id": "8Vv",
+    "agentCode": "a450",
+    "fullName": "avi",
+    "passwordHash": "$2b$10$haaa/d17b4LUoXf8CFO4xe.six7w5kKY.qQIGJdUpvwwv1Omoe1iy",
+    "role": "admin",
+    "createdAt": "2026-03-10T15:51:38.190Z"
   }
 ]
