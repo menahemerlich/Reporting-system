@@ -1,11 +1,9 @@
 
 export type User = {
     id: string;
-    userId: string
-    message: string
-    category: string
-    urgency: string
-    sourceType: string
+    agentCode: string
+    fullName: string
+    passwordHash: string
+    role: "agent" | "admin"
     createdAt: string
-    imagePath: string
 }

@@ -1,9 +1,10 @@
 import { useContext, useEffect, useState } from 'react'
 import { AuthContext } from '../AuthContext'
+import type { User } from '../types/User'
 
 function AdminUsersPage() {
     const { token } = useContext(AuthContext)
-    const [data, setData] = useState<any[]>([])
+    const [data, setData] = useState<User[]>([])
     const [agentCode, setAgentCode] = useState("")
     const [fullName, setFullName] = useState("")
     const [role, setRole] = useState("")
@@ -116,7 +117,7 @@ function AdminUsersPage() {
                         </thead>
 
                         <tbody>
-                            {data.map((user: any) => (
+                            {data.map((user: User) => (
                                 <tr key={user.id}>
                                     <td>{user.id}</td>
                                     <td>{user.agentCode}</td>

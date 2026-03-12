@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import type { User } from "./types/User";
+import type { Report } from "./types/Report";
 
 const AuthContext = createContext<any>(null)
 
@@ -11,7 +11,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         const storedUser = localStorage.getItem("user");
         return storedUser ? JSON.parse(storedUser) : null;
     });
-    const [data, setData] = useState<User[]>([])
+    const [data, setData] = useState<Report[]>([])
 
     useEffect(() => {
         if (token) {
@@ -32,13 +32,14 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     const logout = () => {
         setToken(null);
         setUser(null);
+        setData([])
         localStorage.removeItem("token");
         localStorage.removeItem("user");
         navigate("/login");
     };
 
     return (
-        <AuthContext.Provider value={{ token, setToken, user, setUser, logout }}>
+        <AuthContext.Provider value={{ token, setToken, user, setUser, logout, data, setData }}>
             {children}
         </AuthContext.Provider>
     );
