@@ -38,7 +38,7 @@ function CSVUploadPage() {
     return (
         <div className="fileUpload newForm csvUpload">
             <label htmlFor="fileInput" className="fileLabel">
-                📎 Upload CSV
+                Upload CSV
             </label>
 
             <input id="fileInput" type="file" name="file" onChange={handleFile} />

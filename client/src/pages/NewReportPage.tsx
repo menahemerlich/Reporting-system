@@ -71,7 +71,7 @@ function NewReportPage() {
                 onChange={(e) => setMessage(e.target.value)} required />
             <div className="fileUpload">
                 <label htmlFor="fileInput" className="fileLabel">
-                    📎 Upload image
+                    Upload image
                 </label>
                 <input
                     id="fileInput"
@@ -80,7 +80,7 @@ function NewReportPage() {
                     ref={fileInputRef}
                     onChange={handleFile} />
             </div>
-            {file ? <p className="fileName">Selected file: {file.name}</p>: <p className="fileName">No file selected</p>}
+            {file ? <p className="fileName">Selected file: {file.name}</p> : <p className="fileName">No file selected</p>}
             <button onClick={submit}>Submit</button>
 
         </div>

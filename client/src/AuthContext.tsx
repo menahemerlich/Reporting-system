@@ -1,5 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import type { User } from "./types/User";
 
 const AuthContext = createContext<any>(null)
 
@@ -10,6 +11,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         const storedUser = localStorage.getItem("user");
         return storedUser ? JSON.parse(storedUser) : null;
     });
+    const [data, setData] = useState<User[]>([])
 
     useEffect(() => {
         if (token) {

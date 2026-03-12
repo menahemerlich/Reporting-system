@@ -36,7 +36,7 @@ const upload = multer({
 
 const uploadCsv = multer({
     dest: 'uploads/',
-    fileFilter: (req, file, cb) => {        
+    fileFilter: (req, file, cb) => {
         if (file.mimetype !== 'text/csv') {
             return cb(new Error("Only CSV allowed"))
         }
@@ -57,6 +57,7 @@ reportsRoute.post('/', authMiddleware, (req, res) => {
         const { category, urgency, message } = req.body
 
         if (!category || !urgency || !message) {
+            fs.unlinkSync(req.file.path)
             return res.status(400).json({ message: "Missing fields" })
         }
         if (req.file) {
@@ -119,7 +120,7 @@ reportsRoute.post('/csv', authMiddleware, (req, res) => {
 
 reportsRoute.get("/", authMiddleware, (req, res) => {
     const user = req.user
-    const {agentId, category, urgency, message } = req.query
+    const { agentId, category, urgency, message } = req.query
     const reports = getReports(user)
     let filtered = reports
 
